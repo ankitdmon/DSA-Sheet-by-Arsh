@@ -1,0 +1,41 @@
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head == NULL){
+            return NULL;
+        }
+        
+        unordered_map<ListNode*, int> um;
+        while(head != NULL){
+            if(um.count(head) > 0){
+                return true;
+            }
+            else{
+                um[head] = 1;
+            }
+            head = head->next;
+        }
+        return false;
+    }
+};
+
+// One More Solution
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head == NULL){
+            return NULL;
+        }
+        ListNode* fast = head, *slow = head;
+        
+        while(fast != NULL && fast->next != NULL){
+            fast = fast->next->next;
+            slow = slow->next;
+            if(fast == slow){
+                return true;
+            }
+        }
+        return false;
+    }
+};
