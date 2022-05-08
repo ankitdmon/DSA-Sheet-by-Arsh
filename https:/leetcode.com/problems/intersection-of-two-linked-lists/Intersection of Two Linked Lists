@@ -1,0 +1,39 @@
+class Solution {
+    private:
+        int getLength(ListNode* temp){
+            int len = 0;
+            while(temp != NULL){
+                len++;
+                temp = temp->next;
+            }
+            return len;
+        }
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        // step1- first get the lengtn of both the lists
+        int len1 = getLength(headA);
+        int len2 = getLength(headB);
+        
+        ListNode* ptr1 = headA, *ptr2 = headB;
+        
+        // make both the pointers at the same place if 1 is greater then make them equal else nake 2 equal point
+        if(len1 > len2){
+            for(int i = 0; i < len1-len2; i++){
+                ptr1 = ptr1->next;
+            }
+        }
+        else{
+           for(int i = 0; i < len2-len1; i++){
+                ptr2 = ptr2->next;
+            } 
+        }
+        
+        // step3- traverse the whole linked list while both got intersect or make null
+        while(ptr1 != ptr2){
+            ptr1 = ptr1->next;
+            ptr2 = ptr2->next;
+        }
+        return ptr2;
+    }
+};
