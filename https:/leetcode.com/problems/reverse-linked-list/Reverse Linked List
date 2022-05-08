@@ -1,0 +1,36 @@
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        stack<int> s;
+        ListNode* temp = head;
+        while(temp != NULL){
+            s.push(temp->val);
+            temp = temp->next;
+        }
+        
+        temp = head;
+        while(temp != NULL){
+            temp->val = s.top();
+            s.pop();
+            temp = temp->next;
+        }
+        return head;
+    }
+};
+
+
+// Another Approch
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* curr = head, * prev = NULL;
+        while(curr != NULL){
+            auto next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+};
