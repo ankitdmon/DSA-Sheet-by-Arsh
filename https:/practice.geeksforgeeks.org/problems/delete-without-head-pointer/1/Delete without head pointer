@@ -1,0 +1,17 @@
+class Solution
+{
+    public:
+    //Function to delete a node without any reference to head pointer.
+    void deleteNode(Node *del)
+    {
+        // step1- make a poiter to point on node
+        Node* next = del->next;
+        // step2- copy the data of next
+        del->data = next->data;
+        // step3- make a link to the next node
+        del->next = next->next;
+        // step4- delete preveious node
+        delete(next);
+    }
+
+};
